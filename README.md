@@ -18,7 +18,7 @@ yarn add vietnam-phone
     + `old_number`: String, Old phone number using old province code
     + `new_number`: String, New phone number using new province code
     + `is_change`: Boolean, Status check phone number old phone or new phone
-    + `vendor`: String, {`VIETTEL`, `VNP`, `VMS`, `VNM`,`BEE`}
+    + `vendor`: String, {`VIETTEL`, `VINAPHONE`, `MOBIFONE`, `VIETNAMOBILE`,`BEELINE`}
 
 ## Usage
 

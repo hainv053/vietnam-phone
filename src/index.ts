@@ -11,24 +11,24 @@ export const detectPhoneNumber = (phone_number: string): {
     phone_number = phone_number.replace(/[+,.\s]/g, '');
     phone_number = phone_number.replace(/^84/g, '0');
 
-    let VIETTEL       = /^0(9[678]|16[23456789]|86|3[23456789])[0-9]{7}/;
-    let VINAPHONE     = /^0(9[14]|12[34579]|8[834512])[0-9]{7}/;
-    let MOBIFONE      = /^0(9[03]|12[01268]|89|7[09768])[0-9]{7}/;
-    let VIETNAMMOBILE = /^0(92|18[86]|5[682])[0-9]{7}/;
-    let GMOBILE       = /^0(?:(99[34567])([0-9]{6})|(59|199)[0-9]{7})/;
+    let VIETTEL      = /^0(9[678]|16[23456789]|86|3[23456789])[0-9]{7}/;
+    let VINAPHONE    = /^0(9[14]|12[34579]|8[834512])[0-9]{7}/;
+    let MOBIFONE     = /^0(9[03]|12[01268]|89|7[09768])[0-9]{7}/;
+    let VIETNAMOBILE = /^0(92|18[86]|5[682])[0-9]{7}/;
+    let GMOBILE      = /^0(?:(99[34567])([0-9]{6})|(59|199)[0-9]{7})/;
 
     let vendor;
 
     if (VIETTEL.test(phone_number)) {
         vendor = 'VIETTEL';
     } else if (VINAPHONE.test(phone_number)) {
-        vendor = 'VNP';
+        vendor = 'VINAPHONE';
     } else if (MOBIFONE.test(phone_number)) {
-        vendor = 'VMS';
-    } else if (VIETNAMMOBILE.test(phone_number)) {
-        vendor = 'VNM';
+        vendor = 'MOBIFONE';
+    } else if (VIETNAMOBILE.test(phone_number)) {
+        vendor = 'VIETNAMOBILE';
     } else if (GMOBILE.test(phone_number)) {
-        vendor = 'BEE';
+        vendor = 'BEELINE';
     } else {
         throw new Error('Can not detect phone number');
     }
