@@ -1,0 +1,32 @@
+{
+  "name": "vietnam-phone",
+  "version": "1.0.1",
+  "description": "Detect Vietnam Phone Number",
+  "homepage": "https://github.com/hainv053/vietnam-phone#readme",
+  "keywords": [
+    "phone number",
+    "vietnam phone number",
+    "javascript",
+    "react",
+    "nodejs"
+  ],
+  "repository": "git@github.com:hainv053/vietnam-phone.git",
+  "files": [
+    "build"
+  ],
+  "main": "build/index.js",
+  "typings": "build/index.d.ts",
+  "typescript": {
+    "definition": "build/index.d.ts"
+  },
+  "author": "hainv",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.116",
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.3"
+  }
+}

@@ -1,0 +1,207 @@
+import * as _ from 'lodash';
+
+export const detectPhoneNumber = (phone_number: string): {
+    phone_number: string
+    old_number: string
+    new_number: string
+    is_change: boolean
+    vendor: string
+} => {
+
+    phone_number = phone_number.replace(/[+,.\s]/g, '');
+    phone_number = phone_number.replace(/^84/g, '0');
+
+    let VIETTEL       = /^0(9[678]|16[23456789]|86|3[23456789])[0-9]{7}/;
+    let VINAPHONE     = /^0(9[14]|12[34579]|8[834512])[0-9]{7}/;
+    let MOBIFONE      = /^0(9[03]|12[01268]|89|7[09768])[0-9]{7}/;
+    let VIETNAMMOBILE = /^0(92|18[86]|5[682])[0-9]{7}/;
+    let GMOBILE       = /^0(?:(99[34567])([0-9]{6})|(59|199)[0-9]{7})/;
+
+    let vendor;
+
+    if (VIETTEL.test(phone_number)) {
+        vendor = 'VIETTEL';
+    } else if (VINAPHONE.test(phone_number)) {
+        vendor = 'VNP';
+    } else if (MOBIFONE.test(phone_number)) {
+        vendor = 'VMS';
+    } else if (VIETNAMMOBILE.test(phone_number)) {
+        vendor = 'VNM';
+    } else if (GMOBILE.test(phone_number)) {
+        vendor = 'BEE';
+    } else {
+        throw new Error('Can not detect phone number');
+    }
+
+    let { old_number, new_number } = getPhoneNumberChange(phone_number);
+
+    return {
+        phone_number: phone_number,
+        old_number: old_number,
+        new_number: new_number,
+        vendor: vendor,
+        is_change: !(old_number === new_number)
+    };
+};
+
+const getPhoneNumberChange = (phone_number: string): {
+    old_number: string
+    new_number: string
+} => {
+
+    let old_number = phone_number;
+    let new_number = phone_number;
+
+    let list_province = [{
+        'province_name': 'Viettel',
+        'old_province_code': '0166',
+        'new_province_code': '036'
+    }, {
+        'province_name': 'Viettel',
+        'old_province_code': '0167',
+        'new_province_code': '037'
+    }, {
+        'province_name': 'Viettel',
+        'old_province_code': '0168',
+        'new_province_code': '038'
+    }, {
+        'province_name': 'Viettel',
+        'old_province_code': '0169',
+        'new_province_code': '039'
+    }, {
+        'province_name': 'Viettel',
+        'old_province_code': '016966',
+        'new_province_code': '03966'
+    }, {
+        'province_name': 'Mobifone',
+        'old_province_code': '0122',
+        'new_province_code': '077'
+    }, {
+        'province_name': 'Mobifone',
+        'old_province_code': '0121',
+        'new_province_code': '079'
+    }, {
+        'province_name': 'Mobifone',
+        'old_province_code': '0120',
+        'new_province_code': '070'
+    }, {
+        'province_name': 'Vinaphone',
+        'old_province_code': '0123',
+        'new_province_code': '083'
+    }, {
+        'province_name': 'Vinaphone',
+        'old_province_code': '0129',
+        'new_province_code': '082'
+    }, {
+        'province_name': 'Vinaphone',
+        'old_province_code': '0127',
+        'new_province_code': '081'
+    }, {
+        'province_name': 'Vinaphone',
+        'old_province_code': '0124',
+        'new_province_code': '084'
+    }, {
+        'province_name': 'Vietnamobile',
+        'old_province_code': '01865',
+        'new_province_code': '0565'
+    }, {
+        'province_name': 'Vietnamobile',
+        'old_province_code': '01866',
+        'new_province_code': '0566'
+    }, {
+        'province_name': 'Vietnamobile',
+        'old_province_code': '01867',
+        'new_province_code': '0567'
+    }, {
+        'province_name': 'Vietnamobile',
+        'old_province_code': '01868',
+        'new_province_code': '0568'
+    }, {
+        'province_name': 'Vietnamobile',
+        'old_province_code': '01869',
+        'new_province_code': '0569'
+    }, {
+        'province_name': 'Vietnamobile',
+        'old_province_code': '01882',
+        'new_province_code': '0582'
+    }, {
+        'province_name': 'Vietnamobile',
+        'old_province_code': '01883',
+        'new_province_code': '0583'
+    }, {
+        'province_name': 'Vietnamobile',
+        'old_province_code': '01884',
+        'new_province_code': '0584'
+    }, {
+        'province_name': 'Vietnamobile',
+        'old_province_code': '01885',
+        'new_province_code': '0585'
+    }, {
+        'province_name': 'Vietnamobile',
+        'old_province_code': '01886',
+        'new_province_code': '0586'
+    }, {
+        'province_name': 'Vietnamobile',
+        'old_province_code': '01887',
+        'new_province_code': '0587'
+    }, {
+        'province_name': 'Vietnamobile',
+        'old_province_code': '01888',
+        'new_province_code': '0588'
+    }, {
+        'province_name': 'Vietnamobile',
+        'old_province_code': '01889',
+        'new_province_code': '0589'
+    }, {
+        'province_name': 'Vietnamobile',
+        'old_province_code': '01863',
+        'new_province_code': '0563'
+    }, {
+        'province_name': 'Vietnamobile',
+        'old_province_code': '01864',
+        'new_province_code': '0564'
+    }, {
+        'province_name': 'Vietnamobile',
+        'old_province_code': '01862',
+        'new_province_code': '0562'
+    }, {
+        'province_name': 'Gmobile',
+        'old_province_code': '01999',
+        'new_province_code': '0599'
+    }, {
+        'province_name': 'Gmobile',
+        'old_province_code': '01998',
+        'new_province_code': '0598'
+    }, {
+        'province_name': 'Gmobile',
+        'old_province_code': '01993',
+        'new_province_code': '0593'
+    }, {
+        'province_name': 'Gmobile',
+        'old_province_code': '01992',
+        'new_province_code': '0592'
+    }];
+
+    let filter_by_old = _.filter(list_province, obj => {
+        let regex = new RegExp(`^${obj.old_province_code}`);
+        return regex.test(phone_number);
+    });
+
+    let filter_by_new = _.filter(list_province, obj => {
+        let regex = new RegExp(`^${obj.new_province_code}`);
+        return regex.test(phone_number);
+    });
+
+    if (filter_by_old.length > 0) {
+        new_number = phone_number.replace(new RegExp(`^${filter_by_old[0].old_province_code}`), filter_by_old[0].new_province_code);
+    }
+
+    if (filter_by_new.length > 0) {
+        old_number = phone_number.replace(new RegExp(`^${filter_by_new[0].new_province_code}`), filter_by_new[0].old_province_code);
+    }
+
+    return {
+        old_number,
+        new_number
+    };
+};
