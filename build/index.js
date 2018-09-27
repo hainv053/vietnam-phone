@@ -1,5 +1,7 @@
-import * as _ from 'lodash';
-export var detectPhoneNumber = function (phone_number) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var _ = require("lodash");
+exports.detectPhoneNumber = function (phone_number) {
     phone_number = phone_number.replace(/[+,.\s]/g, '');
     phone_number = phone_number.replace(/^84/g, '0');
     var VIETTEL = /^0(9[678]|16[23456789]|86|3[23456789])[0-9]{7}/;
