@@ -54,6 +54,14 @@ const getPhoneNumberChange = (phone_number: string): {
 
     let list_province = [{
         'province_name': 'Viettel',
+        'old_province_code': '0162',
+        'new_province_code': '032'
+    }, {
+        'province_name': 'Viettel',
+        'old_province_code': '0163',
+        'new_province_code': '033'
+    }, {
+        'province_name': 'Viettel',
         'old_province_code': '0164',
         'new_province_code': '034'
     }, {

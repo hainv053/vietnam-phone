@@ -42,6 +42,22 @@ var getPhoneNumberChange = function (phone_number) {
     var new_number = phone_number;
     var list_province = [{
             'province_name': 'Viettel',
+            'old_province_code': '0162',
+            'new_province_code': '032'
+        }, {
+            'province_name': 'Viettel',
+            'old_province_code': '0163',
+            'new_province_code': '033'
+        }, {
+            'province_name': 'Viettel',
+            'old_province_code': '0164',
+            'new_province_code': '034'
+        }, {
+            'province_name': 'Viettel',
+            'old_province_code': '0165',
+            'new_province_code': '035'
+        }, {
+            'province_name': 'Viettel',
             'old_province_code': '0166',
             'new_province_code': '036'
         }, {
@@ -62,6 +78,14 @@ var getPhoneNumberChange = function (phone_number) {
             'new_province_code': '03966'
         }, {
             'province_name': 'Mobifone',
+            'old_province_code': '0128',
+            'new_province_code': '078'
+        }, {
+            'province_name': 'Mobifone',
+            'old_province_code': '0126',
+            'new_province_code': '076'
+        }, {
+            'province_name': 'Mobifone',
             'old_province_code': '0122',
             'new_province_code': '077'
         }, {
@@ -72,6 +96,10 @@ var getPhoneNumberChange = function (phone_number) {
             'province_name': 'Mobifone',
             'old_province_code': '0120',
             'new_province_code': '070'
+        }, {
+            'province_name': 'Vinaphone',
+            'old_province_code': '0125',
+            'new_province_code': '085'
         }, {
             'province_name': 'Vinaphone',
             'old_province_code': '0123',
